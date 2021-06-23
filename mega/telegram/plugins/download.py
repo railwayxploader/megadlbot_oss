@@ -44,11 +44,7 @@ async def new_message_dl_handler(c: Client, m: Message):
         if url_count == 0 and not m.text.startswith("magnet"):
             await url_process(m)
         elif url_count == 0 and m.text.startswith("magnet"):
-            if ('seedr_username' in user_details) and ('seedr_passwd' in user_details):
                 await call_seedr_download(m, "magnet")
-            else:
-                await m.reply_text("Well! I do not know how to download torrents unless you connect me to Seedr. "
-                                   "Seedr Settings are available under /dldsettings")
         elif m.text.startswith("magnet"):
             url_details = await MegaFiles().get_file_by_url(m.text)
             files = [
