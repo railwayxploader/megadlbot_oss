@@ -371,27 +371,9 @@ async def call_seedr_download(msg: Message, torrent_type: str):
                     tr_progress = await SeedrAPI().get_torrent_details(tr_process["user_torrent_id"], msg.chat.id)
                     file_link = f"https://{Common().web_fqdn}/seedr/{msg.chat.id}/{str(tr_progress['folder_created'])}" if Common().on_heroku else \
                         f"http://{Common().web_fqdn}:{Common().web_port}/seedr/{msg.chat.id}/{str(tr_progress['folder_created'])}"
-                    await ack_msg.edit_text(f"How would you like to upload the contents?\n"
-                                            f"Here is the Direct Link for the File: \n"
+                    await ack_msg.edit_text(f""
+                                            f"Here is the Direct Link for the Seedr File: \n"
                                             f"{file_link}")
-                    await ack_msg.edit_reply_markup(
-                        InlineKeyboardMarkup(
-                            [
-                                [
-                                    InlineKeyboardButton(text=f"{emoji.PACKAGE} Compressed",
-                                                         callback_data=f"sdlc_{str(tr_progress['folder_created'])}"
-                                                                       f"_{msg.chat.id}_{msg.message_id}"
-                                                                       f"_{ack_msg.message_id}")
-                                ],
-                                [
-                                    InlineKeyboardButton(text=f"{emoji.CARD_FILE_BOX} UnCompressed",
-                                                         callback_data=f"unsd_{str(tr_progress['folder_created'])}"
-                                                                       f"_{msg.chat.id}_{msg.message_id}"
-                                                                       f"_{ack_msg.message_id}")
-                                ]
-                            ]
-                        )
-                    )
                     break
         except Exception as e:
             logging.error(e)
