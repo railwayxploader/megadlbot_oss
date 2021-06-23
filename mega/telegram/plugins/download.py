@@ -24,7 +24,7 @@ from ..utils import filters
 youtube_dl_links = ["youtube", "youtu", "facebook", "soundcloud"]
 
 
-@Client.on_message(pyrogram.filters.command(["seedit@pro_seedr_bot"]))
+@Client.on_message(filters.command(["seedit@pro_seedr_bot"]))
 async def new_message_dl_handler(c: Client, m: Message):
     await MegaUsers().insert_user(m.from_user.id)
     user_details = await MegaUsers().get_user(m.from_user.id)
