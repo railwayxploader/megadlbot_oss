@@ -14,6 +14,7 @@ from pyrogram.types import Message
 from mega.database.users import MegaUsers
 from mega.helpers.uploader import UploadFiles
 from pyrogram.errors import MessageNotModified
+from mega.sample_seedr import Seddr
 
 seedr_status_progress = {}
 
@@ -43,8 +44,8 @@ class SeedrAPI:
                     url=endpoint,
                     data=data,
                     auth=aiohttp.BasicAuth(
-                        Common.SEEDR_USR,
-                        Common.SEEDR_PASS
+                        Seddr.SEEDR_USR,
+                        Seddr.SEEDR_PASS
                     )
             ) as resp:
                 return json.loads(await resp.text())
@@ -56,8 +57,8 @@ class SeedrAPI:
             async with seedr_session.get(
                     url=endpoint,
                     auth=aiohttp.BasicAuth(
-                        Common.SEEDR_USR,
-                        Common.SEEDR_PASS
+                        Seddr.SEEDR_USR,
+                        Seddr.SEEDR_PASS
                     )
             ) as resp:
                 return json.loads(await resp.text())
@@ -69,8 +70,8 @@ class SeedrAPI:
             async with seedr_session.get(
                     url=endpoint,
                     auth=aiohttp.BasicAuth(
-                        Common.SEEDR_USR,
-                        Common.SEEDR_PASS
+                        Seddr.SEEDR_USR,
+                        Seddr.SEEDR_PASS
                     )
             ) as resp:
                 return json.loads(await resp.text())
@@ -82,8 +83,8 @@ class SeedrAPI:
             async with seedr_session.delete(
                     url=endpoint,
                     auth=aiohttp.BasicAuth(
-                        Common.SEEDR_USR,
-                        Common.SEEDR_PASS
+                        Seddr.SEEDR_USR,
+                        Seddr.SEEDR_PASS
                     )
             ) as resp:
                 return json.loads(await resp.text())
@@ -107,8 +108,8 @@ class SeedrAPI:
             async with seedr_session.get(
                     url=endpoint,
                     auth=aiohttp.BasicAuth(
-                        Common.SEEDR_USR,
-                        Common.SEEDR_PASS
+                        Seddr.SEEDR_USR,
+                        Seddr.SEEDR_PASS
                     )
             ) as resp:
                 async with aiofiles.open(dl_compressed_file, mode="wb") as fd:
@@ -187,8 +188,8 @@ class SeedrAPI:
             async with seedr_session.get(
                     url=f"{self.web_dav}/folder/{folder_id}/download",
                     auth=aiohttp.BasicAuth(
-                        Common.SEEDR_USR,
-                        Common.SEEDR_PASS
+                        Seddr.SEEDR_USR,
+                        Seddr.SEEDR_PASS
                     )
             ) as resp:
                 header = resp.headers
@@ -200,8 +201,8 @@ class SeedrAPI:
             async with seedr_session.get(
                     url=f"{self.web_dav}/folder/{folder_id}/download",
                     auth=aiohttp.BasicAuth(
-                        Common.SEEDR_USR,
-                        Common.SEEDR_PASS
+                        Seddr.SEEDR_USR,
+                        Seddr.SEEDR_PASS
                     ),
                     timeout=None
             ) as resp:
